@@ -5,7 +5,9 @@ layout: base
 
 <h2>plotly.js</h2>
 
-plotly.js is an <a target="_blank" href="">open source</a>, interactive, declarative graphing library built on top of d3.js and <a target="_blank" href="http://stack.gl">stack.gl</a>.
+plotly.js is the <a target="_blank" href="">open source</a> javascript graphing library that powers <a href="">plotly</a>.
+<br>
+Built on top of d3.js and <a target="_blank" href="http://stack.gl">stack.gl</a>, <code>plotly.js</code> provides a high-level, declarative API for all of the common chart types.
 
 <div style="height: 80vh;" id="my-graph"></div>
 
@@ -72,69 +74,14 @@ plotly.js is an <a target="_blank" href="">open source</a>, interactive, declara
         xaxis: {title: 'Life Expectancy'},
         yaxis: {title: 'GDP per Capita', type: 'log'},
         margin: {t: 20},
-        hovermode: 'closest',
-        annotations: [{
-          text: "plotly.js graphs are interactive:<br>Click-and-drag to zoom, double-click to autoscale, shift-click to pan, select legend entries to toggle.",
-          showarrow: false, bgcolor: 'rgba(255, 255, 255, 0.5)',
-          x: 1, y: 0, xref: 'paper', yref: 'paper', align: 'right'
-        }]
+        hovermode: 'closest'
     };
     Plotly.plot('my-graph', data, layout, {showLink: false});
 });</script>
 
-<code>plotly.js</code> charts are described declaritively as JSON objects. Every aspect of the charts (the colors, the grids, the data) has a corresponding JSON attribute. Here, we remove the x-axis grid lines with <code>xaxis: {showgrid: false}</code>, the width of the lines with <code>{line: {width: 1}}</code>. <a target="_blank" href="https://plot.ly/javascript/reference">View all of the possible attributes</a>.
+<h5>Sophisticated chart types</h5>
 
-<div style="height: 70vh;" id="wind-speed"></div>
-
-<pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
-  var trace = {
-    x: rows.map(function(row){return row['Time']; }),
-    y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
-    line: {
-      width: 1
-    },
-    error_y: {
-      array: rows.map(function(row){return row['10 Min Std Dev']; }),
-      thickness: 0.5,
-      width: 0
-    }
-  };
-
-  var layout = {
-    yaxis: {title: "Wind Speed"},
-    xaxis: {showgrid: false},
-    margin: {l: 40, b: 40, t: 20}
-  };
-
-  Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
-});</code></pre>
-
-<script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
-  var trace = {
-    x: rows.map(function(row){return row['Time']; }),
-    y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
-    line: {
-      width: 1
-    },
-    error_y: {
-      array: rows.map(function(row){return row['10 Min Std Dev']; }),
-      thickness: 0.5,
-      width: 0
-    }
-  };
-
-  var layout = {
-    yaxis: {title: "Wind Speed"},
-    xaxis: {showgrid: false},
-    margin: {l: 40, b: 40, t: 20}
-  };
-
-  Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
-});
-</script>
-
-<br>
-<code>plotly.js</code> provides abstractions to the types of statistical and scientific charts that you would find in packages like matplotlib, ggplot2, or MATLAB.
+<code>plotly.js</code> abstracts the types of statistical and scientific charts that you would find in packages like matplotlib, ggplot2, or MATLAB.
 
 <div style="height: 75vh" id="contour-plot"></div>
 
@@ -168,11 +115,16 @@ Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
     reversescale: true, zmax: 2.5, zmin: -2.5
   };
   var layout = {
-    title: 'turbulence simulation',
     xaxis: {title: 'radial direction', showline: true, mirror: 'allticks', ticks: 'inside'},
     yaxis: {title: 'vertical direction', showline: true, mirror: 'allticks', ticks: 'inside'},
-    margin: {l: 40, b: 40, t: 60},
-    annotations: [{
+    margin: {l: 40, b: 40, t: 20},
+    annotations: [
+    {
+      showarrow: false,
+      text: 'turbulence simulation', font: {size: 16},
+      x: 0, y: 1, xref: 'paper', yref: 'paper', bgcolor: 'white'
+    },
+    {
       showarrow: false,
       text: 'Credit: <a target="_blank" href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
       x: 0, y: 0, xref: 'paper', yref: 'paper'
@@ -182,19 +134,73 @@ Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
 });
 </script>
 
-<a target="_blank" href=""><a target="_blank" href="http://stack.gl">stack.gl</a></a> extends the possibilities of charting in the web browser, allowing interactive 3D graphing or 2D scatter plots, exceeding the inherit <a target="_blank" href="">performance limitations of SVG</a> in the browser.
+<h5>Fully customizable</h5>
 
-<div class="row">
-  <div class="six columns">
-    <img src="https://plot.ly/~PlotBot/193.png"></img>
-  </div>
-  <div class="six columns">
-    <img src="https://plot.ly/~neda/7530.png"></img>
-  </div>
-</div>
+<code>plotly.js</code> charts are described declaritively as JSON objects. Every aspect of the charts, like the colors, the grid lines, the legend, has a corresponding set of JSON attributes. Here, we remove the x-axis grid lines with <code>xaxis: {showgrid: false}</code>, the width of the lines with <code>{line: {width: 1}}</code>, and the format of the date labels with <code>tickformat: "%B %e"</code>. <a target="_blank" href="https://plot.ly/javascript/reference">View all of the possible attributes</a>.
+
+<div style="height: 70vh;" id="wind-speed"></div>
+
+<pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
+  var trace = {
+    x: rows.map(function(row){return row['Time']; }),
+    y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
+    line: {
+      width: 1
+    },
+    error_y: {
+      array: rows.map(function(row){return row['10 Min Std Dev']; }),
+      thickness: 0.5,
+      width: 0
+    }
+  };
+
+  var layout = {
+    yaxis: {title: "Wind Speed"},
+    xaxis: {showgrid: false, tickformat: "%B, %Y"},
+    margin: {l: 40, b: 10, t: 20}
+  };
+
+  Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
+});</code></pre>
+
+<script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
+  var trace = {
+    x: rows.map(function(row){return row['Time']; }),
+    y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
+    line: {
+      width: 1
+    },
+    error_y: {
+      array: rows.map(function(row){return row['10 Min Std Dev']; }),
+      thickness: 0.5,
+      width: 0
+    }
+  };
+
+  var layout = {
+    yaxis: {title: "Wind Speed"},
+    xaxis: {showgrid: false, tickformat: "%B %e"},
+    margin: {l: 40, b: 40, t: 20}
+  };
+
+  Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
+});
+</script>
+
+<h5>High performance</h5>
+
+Most plotly graphs are drawn with SVG in the DOM. This means great compatability across browsers and publication-quality vector image export. Unfortunately, there are inherent performance limitations with the number of SVG elements that you can draw in the DOM.<br>
+
+<code>plotly.js</code><a target="_blank" href=""> uses <a target="_blank" href="http://stack.gl">stack.gl</a></a> for high performance 2D and 3D charting, allowing rich 2D and 3D interactivity into the millions of points, exceeding the inherit performance limitations of SVG in the browser by orders of magnitude.
+
+<img style="width: 100%; max-width: 1000px" src="https://plot.ly/~chris/17389/hue-value-vs-year/.png"/>
+
+<h5>Fully interactive</h5>
+<code>plotly.js</code> charts are shipped with zoom, pan, hover, and click interactions. Click-and-drag to zoom into a region, double-click to autoscale, click on legend items to toggle traces. All of these events are also <a target="_blank" href="">exposed in the API</a>.
 
 
-By abstracting charts to a declaritive JSON structure, <code>plotly.js</code> is used a browser-based charting library in <a target="_blank" href="">Python</a>, <a target="_blank" href="">R</a>, and <a target="_blank" href="">MATLAB</a>.
+<h5>Universal</h5>
+By abstracting charts to a declaritive JSON structure, <code>plotly.js</code> is used a browser-based charting library in <a target="_blank" href="">Python</a>, <a target="_blank" href="">R</a>, <a target="_blank" href="">MATLAB</a>, <a target="_blank" href="">Julia</a>.
 
 <script type="text/javascript">
 window.addEventListener("resize", function(){
@@ -205,10 +211,12 @@ window.addEventListener("resize", function(){
 </script>
 
 <h5>Contributing</h5>
+<code>plotly.js</code> is open source. You can also sponsor development, like these great companies.
 
 <h5>Getting started</h5>
 
 <h5>Example gallery</h5>
 
-<h5>License: MIT</h5>
+<h5>License</h5>
+<h5>MIT</h5>
 
