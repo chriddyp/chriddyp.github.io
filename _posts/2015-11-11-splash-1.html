@@ -1,0 +1,206 @@
+---
+permalink: /splash-1
+layout: base
+---
+
+<h2>plotly.js</h2>
+
+plotly.js is an <a href="">open source</a>, interactive, declarative graphing library built on top of d3.js and webgl.
+
+<div style="height: 80vh;" id="my-graph"></div>
+
+<br>Plotly graphs are interactive. Click-and-drag to zoom, double-click to autoscale, shift-click to pan, select legend entries to toggle.
+
+<pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(rows){
+  var traces = [];
+  ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'].forEach(function(continent) {
+    var x = rows.map(function(row){   if(row.continent==continent && +row.year === 2007) return row.lifeExp;});
+    var y = rows.map(function(row){   if(row.continent==continent && +row.year === 2007) return row.gdpPercap;});
+    var text = rows.map(function(row){if(row.continent==continent && +row.year === 2007) return row.country;});
+    var size = rows.map(function(row){if(row.continent===continent && +row.year === 2007) return row.pop;}),
+    var sizeRef = Math.max.apply(null, rows.map(function(row){return row.pop;})) / (2*3.14*1000);
+
+    traces.push({
+      x: x, y: y, text: text
+      name: continent, mode: "markers",
+      marker: {size: size, sizemode: "area", sizeref: sizeref}
+    });
+  });
+
+  var layout = {
+    xaxis: {title: "Life Expectancy"}, yaxis: {title: "GDP per Capita", type: "log"},
+    margin: {t: 20}, hovermode: "closest"
+  };
+
+  Plotly.plot(document.getElementById('my-graph'), traces, layout)
+});</code></pre>
+
+<script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(rows){
+  var traces = [];
+  ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'].forEach(function(continent) {
+    traces.push({
+      x: rows.map(function(row){   if(row.continent==continent && +row.year === 2007) return row.lifeExp;}),
+      y: rows.map(function(row){   if(row.continent==continent && +row.year === 2007) return row.gdpPercap;}),
+      text: rows.map(function(row){if(row.continent==continent && +row.year === 2007) return row.country;}),
+      name: continent,
+      mode: "markers",
+      marker: {
+        size: rows.map(function(row){if(row.continent===continent && +row.year === 2007) return row.pop;}),
+        sizemode: "area",
+        sizeref: Math.max.apply(null, rows.map(function(row){return row.pop;})) / (2*3.14*1000)
+      }
+    });
+  });
+
+  var layout = {
+    xaxis: {title: "Life Expectancy"},
+    yaxis: {title: "GDP per Capita", type: "log"},
+    margin: {l: 40, b: 40, t: 20},
+    hovermode: "closest"
+  };
+
+  Plotly.plot(document.getElementById('my-graph'), traces, layout)
+});
+
+window.addEventListener("resize", function(){
+  Plotly.Plots.resize(document.getElementById('my-graph'));
+})
+</script>
+
+<code>plotly.js</code> charts are described declaritively as JSON objects. Every aspect of the charts (the colors, the grids, the data) has a corresponding JSON attribute. Here, we remove the x-axis grid lines with <code>xaxis: {showgrid: false}</code>, the width of the lines with <code>{line: {width: 1}}</code>. <a href="https://plot.ly/javascript/reference">View all of the possible attributes</a>.
+
+<div style="height: 70vh;" id="wind-speed"></div>
+
+<pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
+  var trace = {
+    x: rows.map(function(row){return row['Time']; }),
+    y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
+    line: {
+      width: 1
+    },
+    error_y: {
+      array: rows.map(function(row){return row['10 Min Std Dev']; }),
+      thickness: 0.5,
+      width: 0
+    }
+  };
+
+  var layout = {
+    yaxis: {title: "Wind Speed"},
+    xaxis: {showgrid: false},
+    margin: {l: 40, b: 40, t: 20}
+  };
+
+  Plotly.plot(document.getElementById('wind-speed'), [trace], layout);
+});</code></pre>
+
+<script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
+  var trace = {
+    x: rows.map(function(row){return row['Time']; }),
+    y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
+    line: {
+      width: 1
+    },
+    error_y: {
+      array: rows.map(function(row){return row['10 Min Std Dev']; }),
+      thickness: 0.5,
+      width: 0
+    }
+  };
+
+  var layout = {
+    yaxis: {title: "Wind Speed"},
+    xaxis: {showgrid: false},
+    margin: {l: 40, b: 40, t: 20}
+  };
+
+  Plotly.plot(document.getElementById('wind-speed'), [trace], layout);
+});
+</script>
+
+<br>
+<code>plotly.js</code> provides abstractions to the types of statistical and scientific charts that you would find in packages like matplotlib, ggplot2, or MATLAB.
+
+<div style="height: 75vh" id="contour-plot"></div>
+
+<pre><code>Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
+  var trace = {
+    x: figure.data[0].x, y: figure.data[0].y, z: figure.data[0].z,
+    type: 'contour', autocolorscale: false,
+    colorscale: [[0,"rgb(  0,  0,  0)"],[0.3,"rgb(230,  0,  0)"],[0.6,"rgb(255,210,  0)"],[1,"rgb(255,255,255)"]],
+    reversescale: true, zmax: 2.5, zmin: -2.5
+  };
+  var layout = {
+    title: 'turbulence simulation',
+    xaxis: {title: 'radial direction', showline: true, mirror: 'allticks', ticks: 'inside'},
+    yaxis: {title: 'vertical direction', showline: true, mirror: 'allticks', ticks: 'inside'},
+    margin: {l: 40, b: 40, t: 60},
+    annotations: [{
+      showarrow: false,
+      text: 'Credit: <a href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
+      x: 0, y: 0, xref: 'paper', yref: 'paper'
+    }]
+  }
+  Plotly.plot(document.getElementById('contour-plot'), [trace], layout);
+});</code></pre>
+
+<script type="text/javascript">
+Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
+  var trace = {
+    x: figure.data[0].x, y: figure.data[0].y, z: figure.data[0].z,
+    type: 'contour', autocolorscale: false,
+    colorscale: [[0,"rgb(  0,  0,  0)"],[0.3,"rgb(230,  0,  0)"],[0.6,"rgb(255,210,  0)"],[1,"rgb(255,255,255)"]],
+    reversescale: true, zmax: 2.5, zmin: -2.5
+  };
+  var layout = {
+    title: 'turbulence simulation',
+    xaxis: {title: 'radial direction', showline: true, mirror: 'allticks', ticks: 'inside'},
+    yaxis: {title: 'vertical direction', showline: true, mirror: 'allticks', ticks: 'inside'},
+    margin: {l: 40, b: 40, t: 60},
+    annotations: [{
+      showarrow: false,
+      text: 'Credit: <a href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
+      x: 0, y: 0, xref: 'paper', yref: 'paper'
+    }]
+  }
+  Plotly.plot(document.getElementById('contour-plot'), [trace], layout);
+});
+</script>
+
+<a href="">webgl</a> extends the possibilities of charting in the web browser, allowing interactive 3D graphing or 2D scatter plots, exceeding the inherit <a href="">performance limitations of SVG</a> in the browser. Here's 100k points, <a href="">view 1 million</a>.
+
+
+<div id="webgl-2d" style="height: 70vh;"></div>
+
+<script type="text/javascript">
+var N = 1e3;
+var x = new Array(N); var y = new Array(N);
+for(var i=0; i<N; i++) {
+    x[i] = Math.random();
+    y[i] = Math.random();
+}
+Plotly.newPlot(document.getElementById('webgl-2d'),
+  [{x: x, y: y, mode: 'markers', type: 'scatter'}],
+  {title: '1e3 points', margin: {l: 20, b: 20, r: 0, t: 80}});
+</script>
+
+<pre><code>var N = 1e3;
+var x = new Array(N); var y = new Array(N);
+for(var i=0; i&lt;N; i++) {
+    x[i] = Math.random();
+    y[i] = Math.random();
+}
+Plotly.newPlot(document.getElementById('webgl-2d'),
+  [{x: x, y: y, mode: 'markers', type: 'scatter'}],
+  {title: '1e3 points', margin: {l: 20, b: 20, r: 0, t: 80}});</code></pre>
+
+By abstracting charts to a declaritive JSON structure, <code>plotly.js</code> is used a browser-based charting library in <a href="">Python</a>, <a href="">R</a>, and <a href="">MATLAB</a>.
+
+<h5>Contributing</h5>
+
+<h5>Getting started</h5>
+
+<h5>Example gallery</h5>
+
+<h5>License: MIT</h5>
+
