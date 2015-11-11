@@ -5,7 +5,7 @@ layout: base
 
 <h2>plotly.js</h2>
 
-plotly.js is an <a href="">open source</a>, interactive, declarative graphing library built on top of d3.js and webgl.
+plotly.js is an <a href="">open source</a>, interactive, declarative graphing library built on top of d3.js and <a href="http://stack.gl">stack.gl</a>.
 
 <div style="height: 80vh;" id="my-graph"></div>
 
@@ -167,10 +167,10 @@ Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
 });
 </script>
 
-<a href="">webgl</a> extends the possibilities of charting in the web browser, allowing interactive 3D graphing or 2D scatter plots, exceeding the inherit <a href="">performance limitations of SVG</a> in the browser. Here's 100k points, <a href="">view 1 million</a>.
+<a href=""><a href="http://stack.gl">stack.gl</a></a> extends the possibilities of charting in the web browser, allowing interactive 3D graphing or 2D scatter plots, exceeding the inherit <a href="">performance limitations of SVG</a> in the browser. Here's 100k points, <a href="">view 1 million</a>.
 
 
-<div id="webgl-2d" style="height: 70vh;"></div>
+<div id="stack-gl" style="height: 70vh;"></div>
 
 <script type="text/javascript">
 var N = 1e3;
@@ -179,7 +179,7 @@ for(var i=0; i<N; i++) {
     x[i] = Math.random();
     y[i] = Math.random();
 }
-Plotly.newPlot(document.getElementById('webgl-2d'),
+Plotly.newPlot(document.getElementById('stack-gl'),
   [{x: x, y: y, mode: 'markers', type: 'scatter'}],
   {title: '1e3 points', margin: {l: 20, b: 20, r: 0, t: 80}});
 </script>
@@ -190,7 +190,7 @@ for(var i=0; i&lt;N; i++) {
     x[i] = Math.random();
     y[i] = Math.random();
 }
-Plotly.newPlot(document.getElementById('webgl-2d'),
+Plotly.newPlot(document.getElementById('stack-gl'),
   [{x: x, y: y, mode: 'markers', type: 'scatter'}],
   {title: '1e3 points', margin: {l: 20, b: 20, r: 0, t: 80}});</code></pre>
 
