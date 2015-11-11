@@ -5,7 +5,7 @@ layout: base
 
 <h2>plotly.js</h2>
 
-plotly.js is an <a href="">open source</a>, interactive, declarative graphing library built on top of d3.js and <a href="http://stack.gl">stack.gl</a>.
+plotly.js is an <a target="_blank" href="">open source</a>, interactive, declarative graphing library built on top of d3.js and <a target="_blank" href="http://stack.gl">stack.gl</a>.
 
 <div style="height: 80vh;" id="my-graph"></div>
 
@@ -67,7 +67,7 @@ window.addEventListener("resize", function(){
 })
 </script>
 
-<code>plotly.js</code> charts are described declaritively as JSON objects. Every aspect of the charts (the colors, the grids, the data) has a corresponding JSON attribute. Here, we remove the x-axis grid lines with <code>xaxis: {showgrid: false}</code>, the width of the lines with <code>{line: {width: 1}}</code>. <a href="https://plot.ly/javascript/reference">View all of the possible attributes</a>.
+<code>plotly.js</code> charts are described declaritively as JSON objects. Every aspect of the charts (the colors, the grids, the data) has a corresponding JSON attribute. Here, we remove the x-axis grid lines with <code>xaxis: {showgrid: false}</code>, the width of the lines with <code>{line: {width: 1}}</code>. <a target="_blank" href="https://plot.ly/javascript/reference">View all of the possible attributes</a>.
 
 <div style="height: 70vh;" id="wind-speed"></div>
 
@@ -137,7 +137,7 @@ window.addEventListener("resize", function(){
     margin: {l: 40, b: 40, t: 60},
     annotations: [{
       showarrow: false,
-      text: 'Credit: <a href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
+      text: 'Credit: <a target="_blank" href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
       x: 0, y: 0, xref: 'paper', yref: 'paper'
     }]
   }
@@ -159,7 +159,7 @@ Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
     margin: {l: 40, b: 40, t: 60},
     annotations: [{
       showarrow: false,
-      text: 'Credit: <a href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
+      text: 'Credit: <a target="_blank" href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
       x: 0, y: 0, xref: 'paper', yref: 'paper'
     }]
   }
@@ -167,34 +167,19 @@ Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
 });
 </script>
 
-<a href=""><a href="http://stack.gl">stack.gl</a></a> extends the possibilities of charting in the web browser, allowing interactive 3D graphing or 2D scatter plots, exceeding the inherit <a href="">performance limitations of SVG</a> in the browser. Here's 100k points, <a href="">view 1 million</a>.
+<a target="_blank" href=""><a target="_blank" href="http://stack.gl">stack.gl</a></a> extends the possibilities of charting in the web browser, allowing interactive 3D graphing or 2D scatter plots, exceeding the inherit <a target="_blank" href="">performance limitations of SVG</a> in the browser.
+
+<div class="row">
+  <div class="six columns">
+    <img src="https://plot.ly/~PlotBot/193.png"></img>
+  </div>
+  <div class="six columns">
+    <img src="https://plot.ly/~neda/7530.png"></img>
+  </div>
+</div>
 
 
-<div id="stack-gl" style="height: 70vh;"></div>
-
-<script type="text/javascript">
-var N = 1e3;
-var x = new Array(N); var y = new Array(N);
-for(var i=0; i<N; i++) {
-    x[i] = Math.random();
-    y[i] = Math.random();
-}
-Plotly.newPlot(document.getElementById('stack-gl'),
-  [{x: x, y: y, mode: 'markers', type: 'scatter'}],
-  {title: '1e3 points', margin: {l: 20, b: 20, r: 0, t: 80}});
-</script>
-
-<pre><code>var N = 1e3;
-var x = new Array(N); var y = new Array(N);
-for(var i=0; i&lt;N; i++) {
-    x[i] = Math.random();
-    y[i] = Math.random();
-}
-Plotly.newPlot(document.getElementById('stack-gl'),
-  [{x: x, y: y, mode: 'markers', type: 'scatter'}],
-  {title: '1e3 points', margin: {l: 20, b: 20, r: 0, t: 80}});</code></pre>
-
-By abstracting charts to a declaritive JSON structure, <code>plotly.js</code> is used a browser-based charting library in <a href="">Python</a>, <a href="">R</a>, and <a href="">MATLAB</a>.
+By abstracting charts to a declaritive JSON structure, <code>plotly.js</code> is used a browser-based charting library in <a target="_blank" href="">Python</a>, <a target="_blank" href="">R</a>, and <a target="_blank" href="">MATLAB</a>.
 
 <h5>Contributing</h5>
 
