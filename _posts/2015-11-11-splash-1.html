@@ -11,61 +11,73 @@ plotly.js is an <a target="_blank" href="">open source</a>, interactive, declara
 
 <br>Plotly graphs are interactive. Click-and-drag to zoom, double-click to autoscale, shift-click to pan, select legend entries to toggle.
 
-<pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(rows){
-  var traces = [];
-  ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'].forEach(function(continent) {
-    var x = rows.map(function(row){   if(row.continent==continent && +row.year === 2007) return row.lifeExp;});
-    var y = rows.map(function(row){   if(row.continent==continent && +row.year === 2007) return row.gdpPercap;});
-    var text = rows.map(function(row){if(row.continent==continent && +row.year === 2007) return row.country;});
-    var size = rows.map(function(row){if(row.continent===continent && +row.year === 2007) return row.pop;}),
-    var sizeRef = Math.max.apply(null, rows.map(function(row){return row.pop;})) / (2*3.14*1000);
+<pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows){
+    var YEAR = 2007;
+    var continents = ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'];
+    var POP_TO_PX_SIZE = 2e5;
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key]; });
+    }
 
-    traces.push({
-      x: x, y: y, text: text
-      name: continent, mode: "markers",
-      marker: {size: size, sizemode: "area", sizeref: sizeref}
+    var data = continents.map(function(continent) {
+        var rowsFiltered = rows.filter(function(row) {
+            return (row.continent === continent) && (+row.year === YEAR);
+        });
+        return {
+            mode: 'markers',
+            name: continent,
+            x: unpack(rowsFiltered, 'lifeExp'),
+            y: unpack(rowsFiltered, 'gdpPercap'),
+            text: unpack(rowsFiltered, 'country'),
+            marker: {
+                sizemode: 'area',
+                size: unpack(rowsFiltered, 'pop'),
+                sizeref: POP_TO_PX_SIZE
+            }
+        };
     });
-  });
-
-  var layout = {
-    xaxis: {title: "Life Expectancy"}, yaxis: {title: "GDP per Capita", type: "log"},
-    margin: {t: 20}, hovermode: "closest"
-  };
-
-  Plotly.plot(document.getElementById('my-graph'), traces, layout)
+    var layout = {
+        xaxis: {title: 'Life Expectancy'},
+        yaxis: {title: 'GDP per Capita', type: 'log'},
+        margin: {t: 20},
+        hovermode: 'closest'
+    };
+    Plotly.plot('my-graph', data, layout);
 });</code></pre>
 
-<script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(rows){
-  var traces = [];
-  ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'].forEach(function(continent) {
-    traces.push({
-      x: rows.map(function(row){   if(row.continent==continent && +row.year === 2007) return row.lifeExp;}),
-      y: rows.map(function(row){   if(row.continent==continent && +row.year === 2007) return row.gdpPercap;}),
-      text: rows.map(function(row){if(row.continent==continent && +row.year === 2007) return row.country;}),
-      name: continent,
-      mode: "markers",
-      marker: {
-        size: rows.map(function(row){if(row.continent===continent && +row.year === 2007) return row.pop;}),
-        sizemode: "area",
-        sizeref: Math.max.apply(null, rows.map(function(row){return row.pop;})) / (2*3.14*1000)
-      }
+<script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows){
+    var YEAR = 2007;
+    var continents = ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'];
+    var POP_TO_PX_SIZE = 2e5;
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key]; });
+    }
+
+    var data = continents.map(function(continent) {
+        var rowsFiltered = rows.filter(function(row) {
+            return (row.continent === continent) && (+row.year === YEAR);
+        });
+        return {
+            mode: 'markers',
+            name: continent,
+            x: unpack(rowsFiltered, 'lifeExp'),
+            y: unpack(rowsFiltered, 'gdpPercap'),
+            text: unpack(rowsFiltered, 'country'),
+            marker: {
+                sizemode: 'area',
+                size: unpack(rowsFiltered, 'pop'),
+                sizeref: POP_TO_PX_SIZE
+            }
+        };
     });
-  });
-
-  var layout = {
-    xaxis: {title: "Life Expectancy"},
-    yaxis: {title: "GDP per Capita", type: "log"},
-    margin: {l: 40, b: 40, t: 20},
-    hovermode: "closest"
-  };
-
-  Plotly.plot(document.getElementById('my-graph'), traces, layout)
-});
-
-window.addEventListener("resize", function(){
-  Plotly.Plots.resize(document.getElementById('my-graph'));
-})
-</script>
+    var layout = {
+        xaxis: {title: 'Life Expectancy'},
+        yaxis: {title: 'GDP per Capita', type: 'log'},
+        margin: {t: 20},
+        hovermode: 'closest'
+    };
+    Plotly.plot('my-graph', data, layout);
+});</script>
 
 <code>plotly.js</code> charts are described declaritively as JSON objects. Every aspect of the charts (the colors, the grids, the data) has a corresponding JSON attribute. Here, we remove the x-axis grid lines with <code>xaxis: {showgrid: false}</code>, the width of the lines with <code>{line: {width: 1}}</code>. <a target="_blank" href="https://plot.ly/javascript/reference">View all of the possible attributes</a>.
 
@@ -180,6 +192,14 @@ Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
 
 
 By abstracting charts to a declaritive JSON structure, <code>plotly.js</code> is used a browser-based charting library in <a target="_blank" href="">Python</a>, <a target="_blank" href="">R</a>, and <a target="_blank" href="">MATLAB</a>.
+
+<script type="text/javascript">
+window.addEventListener("resize", function(){
+  Plotly.Plots.resize(document.getElementById('wind-speed'));
+  Plotly.Plots.resize(document.getElementById('contour-plot'));
+  Plotly.Plots.resize(document.getElementById('my-graph'));
+});
+</script>
 
 <h5>Contributing</h5>
 
