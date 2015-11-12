@@ -5,40 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://rawgit.com/dhg/Skeleton/master/css/skeleton.css"/>
+	<link rel="stylesheet" href="https://rawgit.com/dhg/Skeleton/master/css/normalize.css"/>
 
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300,200|Inconsolata|Ubuntu+Mono:400,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/static/splash.css"/>
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300,200,100|Lato:600,400,300,200,100||Ubuntu+Mono:400,700" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="/static/highlight.css"/>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 
-	<style type="text/css">
-	html {
-		font-size: 67%;
-	}
-	body {
-		font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	}
-	code {
-		font-size: inherit;
-		font-family: monospace;
-		background: #FFFFFF;
-		border: 0px;
-		padding: 0;
-		margin: 0;
-	}
-	</style>
-
 	<script src="http://plotly-cdn.s3.amazonaws.com/plotly-latest.min.js"></script>
+
+	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
 	<script src="http://localhost:35729/livereload.js"></script>
 
 </head>
 
-<div class="container">
 {{ content }}
-</div>
+
+<script type="text/javascript">
+$(function() {
+
+    var $sidebar   = $("#sidebar"),
+        $window    = $(window),
+        $header    = $("#header");
+
+    $window.scroll(function() {
+    	$sidebar.css({top: Math.max(0, ($header.height() - $window.scrollTop()))});
+    });
+
+});
+</script>
 
 </html>

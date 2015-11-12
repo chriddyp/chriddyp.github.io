@@ -10,7 +10,7 @@ Ported by Fabrício Tavares de Oliveira
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #fff;
+  background: #FCFCF5 !important;
   -webkit-text-size-adjust: none;
 }
 
@@ -18,7 +18,7 @@ Ported by Fabrício Tavares de Oliveira
 .hljs-subst,
 .hljs-tag .hljs-title,
 .nginx .hljs-title {
-  color: #000;
+  color: rgb(30, 30, 30);
 }
 
 .hljs-string,
@@ -58,7 +58,7 @@ Ported by Fabrício Tavares de Oliveira
 .hljs-chunk,
 .asciidoc .hljs-blockquote,
 .markdown .hljs-blockquote {
-  color: #636363;
+  color: #E67272;
 }
 
 .hljs-number,

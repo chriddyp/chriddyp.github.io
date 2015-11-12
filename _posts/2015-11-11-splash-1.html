@@ -3,87 +3,152 @@ permalink: /splash-1
 layout: base
 ---
 
-<h2>plotly.js</h2>
+<div id="header" style="background-image: linear-gradient(0deg, #807A36  0%, #3A7CBB  100%); width: 100%; height: 40vh; position: relative;">
 
-plotly.js is the <a target="_blank" href="">open source</a> javascript graphing library that powers <a href="">plotly</a>.
-<br>
-Built on top of d3.js and <a target="_blank" href="http://stack.gl">stack.gl</a>, <code>plotly.js</code> provides a high-level, declarative API for all of the common chart types.
+  <div style="width: 100%; position: absolute; top: 50%; transform: translateY(-50%); text-align: center; color: white; font-weight: 300; letter-spacing: 0;">
+    <h2>plotly.js</h2>
+    <h4 style="letter-spacing: 0.3px; font-weight: 100;">The open source javascript graphing library that powers plotly</h4>
+  </div>
+</div>
 
-<div style="height: 80vh;" id="my-graph"></div>
+<!--
+<div>
+  <span>
+    plotly
+  </span>
+  <span>
+    explore
+  </span>
+  <span>
+    industries
+  </span>
+  <span>
+    API
+  </span>
+</div>
+-->
 
-<pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows){
-    var YEAR = 2007;
-    var continents = ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'];
-    var POP_TO_PX_SIZE = 2e5;
-    function unpack(rows, key) {
-        return rows.map(function(row) { return row[key]; });
-    }
+<div style="position: relative;">
+<div id="sidebar" style="float: left; width: 200px; position: fixed;">
+  <ul>
+    <li>
+      Getting started
+    </li>
+    <li>
+      Documentation
+    </li>
+    <li>
+      Contributing
+    </li>
+  </ul>
+</div>
 
-    var data = continents.map(function(continent) {
-        var rowsFiltered = rows.filter(function(row) {
-            return (row.continent === continent) && (+row.year === YEAR);
-        });
-        return {
-            mode: 'markers',
-            name: continent,
-            x: unpack(rowsFiltered, 'lifeExp'),
-            y: unpack(rowsFiltered, 'gdpPercap'),
-            text: unpack(rowsFiltered, 'country'),
-            marker: {
-                sizemode: 'area',
-                size: unpack(rowsFiltered, 'pop'),
-                sizeref: POP_TO_PX_SIZE
-            }
-        };
-    });
-    var layout = {
-        xaxis: {title: 'Life Expectancy'},
-        yaxis: {title: 'GDP per Capita', type: 'log'},
-        margin: {t: 20},
-        hovermode: 'closest'
-    };
-    Plotly.plot('my-graph', data, layout, {showLink: false});
-});</code></pre>
+<div style="width: calc(100% - 400px); margin-left: 200px; margin-right: 200px;">
 
-<script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows){
-    var YEAR = 2007;
-    var continents = ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'];
-    var POP_TO_PX_SIZE = 2e5;
-    function unpack(rows, key) {
-        return rows.map(function(row) { return row[key]; });
-    }
+<div style="font-size: 2rem; text-transform: uppercase; margin-bottom: 10px; padding-top: 50px; font-weight: 400;">philosophy</div>
 
-    var data = continents.map(function(continent) {
-        var rowsFiltered = rows.filter(function(row) {
-            return (row.continent === continent) && (+row.year === YEAR);
-        });
-        return {
-            mode: 'markers',
-            name: continent,
-            x: unpack(rowsFiltered, 'lifeExp'),
-            y: unpack(rowsFiltered, 'gdpPercap'),
-            text: unpack(rowsFiltered, 'country'),
-            marker: {
-                sizemode: 'area',
-                size: unpack(rowsFiltered, 'pop'),
-                sizeref: POP_TO_PX_SIZE
-            }
-        };
-    });
-    var layout = {
-        xaxis: {title: 'Life Expectancy'},
-        yaxis: {title: 'GDP per Capita', type: 'log'},
-        margin: {t: 20},
-        hovermode: 'closest'
-    };
-    Plotly.plot('my-graph', data, layout, {showLink: false});
-});</script>
+  <div style="font-weight: 300; font-size: 1.6rem; line-height: 2.6rem;">
+  Built on top of d3.js and <a target="_blank" href="http://stack.gl">stack.gl</a>, <code>plotly.js</code> provides a high-level, declarative charting interface. <code>plotly.js</code> ships with 17 chart types, including 3D charts, statistical graphs, and high-level maps. Over 3 years, <code>plotly.js</code> has generated over 300 million graphs in the plotly community.
+  </div>
 
-<h5>Sophisticated chart types</h5>
+  <div class="graph" style="height: 80vh;" id="my-graph"></div>
 
-<code>plotly.js</code> abstracts the types of statistical and scientific charts that you would find in packages like matplotlib, ggplot2, or MATLAB.
+  <pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows){
+      var YEAR = 2007;
+      var continents = ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'];
+      var POP_TO_PX_SIZE = 2e5;
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
 
-<div style="height: 75vh" id="contour-plot"></div>
+      var data = continents.map(function(continent) {
+          var rowsFiltered = rows.filter(function(row) {
+              return (row.continent === continent) && (+row.year === YEAR);
+          });
+          return {
+              mode: 'markers',
+              name: continent,
+              x: unpack(rowsFiltered, 'lifeExp'),
+              y: unpack(rowsFiltered, 'gdpPercap'),
+              text: unpack(rowsFiltered, 'country'),
+              marker: {
+                  sizemode: 'area',
+                  size: unpack(rowsFiltered, 'pop'),
+                  sizeref: POP_TO_PX_SIZE
+              }
+          };
+      });
+      var layout = {
+          xaxis: {title: 'Life Expectancy'},
+          yaxis: {title: 'GDP per Capita', type: 'log'},
+          margin: {t: 20},
+          hovermode: 'closest'
+      };
+      Plotly.plot('my-graph', data, layout, {showLink: false});
+  });</code></pre>
+
+  <script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows){
+      var YEAR = 2007;
+      var continents = ['Asia', 'Europe', 'Africa', 'Oceania', 'Americas'];
+      var POP_TO_PX_SIZE = 2e5;
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+      var data = continents.map(function(continent) {
+          var rowsFiltered = rows.filter(function(row) {
+              return (row.continent === continent) && (+row.year === YEAR);
+          });
+          return {
+              mode: 'markers',
+              name: continent,
+              x: unpack(rowsFiltered, 'lifeExp'),
+              y: unpack(rowsFiltered, 'gdpPercap'),
+              text: unpack(rowsFiltered, 'country'),
+              marker: {
+                  sizemode: 'area',
+                  size: unpack(rowsFiltered, 'pop'),
+                  sizeref: POP_TO_PX_SIZE
+              }
+          };
+      });
+      var layout = {
+          xaxis: {title: 'Life Expectancy'},
+          yaxis: {title: 'GDP per Capita', type: 'log'},
+          margin: {t: 20},
+          hovermode: 'closest'
+      };
+      Plotly.plot('my-graph', data, layout, {showLink: false});
+  });</script>
+
+
+  <div style="
+  font-size: 2rem;
+  letter-spacing: 1px;
+  line-height: 2.4rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid #D8D8D8;
+  width: 100%;
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+  color: #616161;
+  margin-top: 60px;
+  ">
+    <div>features</div>
+  </div>
+
+  <div style="margin-left: 20px;">
+
+    <div class="block-title">
+      Sophisticated chart types
+    </div>
+
+
+    <div class="block-content">
+      <code>plotly.js</code> abstracts the types of statistical and scientific charts that you would find in packages like matplotlib, ggplot2, or MATLAB.
+    </div>
+
+    <div class="graph" style="height: 75vh" id="contour-plot"></div>
 
 <pre><code>Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
   var trace = {
@@ -106,117 +171,192 @@ Built on top of d3.js and <a target="_blank" href="http://stack.gl">stack.gl</a>
   Plotly.plot(document.getElementById('contour-plot'), [trace], layout, {showLink: false});
 });</code></pre>
 
-<script type="text/javascript">
-Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
-  var trace = {
-    x: figure.data[0].x, y: figure.data[0].y, z: figure.data[0].z,
-    type: 'contour', autocolorscale: false,
-    colorscale: [[0,"rgb(  0,  0,  0)"],[0.3,"rgb(230,  0,  0)"],[0.6,"rgb(255,210,  0)"],[1,"rgb(255,255,255)"]],
-    reversescale: true, zmax: 2.5, zmin: -2.5
-  };
-  var layout = {
-    xaxis: {title: 'radial direction', showline: true, mirror: 'allticks', ticks: 'inside'},
-    yaxis: {title: 'vertical direction', showline: true, mirror: 'allticks', ticks: 'inside'},
-    margin: {l: 40, b: 40, t: 20},
-    annotations: [
-    {
-      showarrow: false,
-      text: 'turbulence simulation', font: {size: 16},
-      x: 0, y: 1, xref: 'paper', yref: 'paper', bgcolor: 'white'
-    },
-    {
-      showarrow: false,
-      text: 'Credit: <a target="_blank" href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
-      x: 0, y: 0, xref: 'paper', yref: 'paper'
-    }]
-  }
-  Plotly.plot(document.getElementById('contour-plot'), [trace], layout, {showLink: false});
-});
-</script>
 
-<h5>Fully customizable</h5>
-
-<code>plotly.js</code> charts are described declaritively as JSON objects. Every aspect of the charts, like the colors, the grid lines, the legend, has a corresponding set of JSON attributes. Here, we remove the x-axis grid lines with <code>xaxis: {showgrid: false}</code>, the width of the lines with <code>{line: {width: 1}}</code>, and the format of the date labels with <code>tickformat: "%B %e"</code>. <a target="_blank" href="https://plot.ly/javascript/reference">View all of the possible attributes</a>.
-
-<div style="height: 70vh;" id="wind-speed"></div>
-
-<pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
-  var trace = {
-    x: rows.map(function(row){return row['Time']; }),
-    y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
-    line: {
-      width: 1
-    },
-    error_y: {
-      array: rows.map(function(row){return row['10 Min Std Dev']; }),
-      thickness: 0.5,
-      width: 0
+  <script type="text/javascript">
+  Plotly.d3.json('https://plot.ly/~DanielCarrera/13.json', function(figure){
+    var trace = {
+      x: figure.data[0].x, y: figure.data[0].y, z: figure.data[0].z,
+      type: 'contour', autocolorscale: false,
+      colorscale: [[0,"rgb(  0,  0,  0)"],[0.3,"rgb(230,  0,  0)"],[0.6,"rgb(255,210,  0)"],[1,"rgb(255,255,255)"]],
+      showscale: false,
+      reversescale: true, zmax: 2.5, zmin: -2.5,
+      colorbar:{ypad:0}
+    };
+    var layout = {
+      xaxis: {title: '', showgrid: false, ticks: '', zeroline: false}, // , showline: true, mirror: 'allticks', ticks: 'inside'},
+      yaxis: {title: '', showgrid: false, ticks: '', zeroline: false}, //, showline: true, mirror: 'allticks', ticks: 'inside'},
+      margin: {l: 0, b: 0, t: 0, r: 0},
+      annotations: [
+      {
+        showarrow: false,
+        text: 'turbulence simulation', font: {size: 16},
+        x: 0, y: 1, xref: 'paper', yref: 'paper', bgcolor: 'white'
+      },
+      {
+        showarrow: false,
+        text: 'Credit: <a target="_blank" href="https://plot.ly/~DanielCarrera">Daniel Carrera</a>',
+        x: 0, y: 0, xref: 'paper', yref: 'paper'
+      }]
     }
-  };
+    Plotly.plot(document.getElementById('contour-plot'), [trace], layout, {showLink: false});
+  });
+  </script>
 
-  var layout = {
-    yaxis: {title: "Wind Speed"},
-    xaxis: {showgrid: false, tickformat: "%B, %Y"},
-    margin: {l: 40, b: 10, t: 20}
-  };
+  <div class="block-title">Fully customizable</div>
+  <div class="block-content">
+    <code>plotly.js</code> charts are described declaritively as JSON objects. Every aspect of the charts, such as colors, grid lines, and the legend, has a corresponding set of JSON attributes.
 
-  Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
+    <div style="
+      padding-top: 15px;
+      padding-bottom: 10px;
+      text-align: right;
+      height: 30px;
+    ">
+      <a style="float: right" target="_blank" href="https://plot.ly/javascript/reference">view all of the available attributes</a>
+    </div>
+
+  </div>
+
+  <div class="graph" style="height: 70vh;" id="wind-speed"></div>
+
+  <pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
+    var trace = {
+      type: 'scatter',                    // set the chart type
+      mode: 'lines',                      // connect points with lines
+      x: rows.map(function(row){          // set the x-data
+        return row['Time'];
+      }),
+      y: rows.map(function(row){          // set the x-data
+        return row['10 Min Sampled Avg'];
+      }),
+      line: {                             // set the width of the line.
+        width: 1
+      },
+      error_y: {
+        array: rows.map(function(row){    // set the height of the error bars
+          return row['10 Min Std Dev'];
+        }),
+        thickness: 0.5,                   // set the thickness of the error bars
+        width: 0
+      }
+    };
+
+    var layout = {
+      yaxis: {title: "Wind Speed"},       // set the y axis title
+      xaxis: {
+        showgrid: false,                  // remove the x-axis grid lines
+        tickformat: "%B, %Y"              // customize the date format to "month, day"
+      },
+      margin: {                           // update the left, bottom, right, top margin
+        l: 40, b: 10, r: 10, t: 20
+      }
+    };
+
+    Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
 });</code></pre>
 
-<script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
-  var trace = {
-    x: rows.map(function(row){return row['Time']; }),
-    y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
-    line: {
-      width: 1
-    },
-    error_y: {
-      array: rows.map(function(row){return row['10 Min Std Dev']; }),
-      thickness: 0.5,
-      width: 0
-    }
-  };
 
-  var layout = {
-    yaxis: {title: "Wind Speed"},
-    xaxis: {showgrid: false, tickformat: "%B %e"},
-    margin: {l: 40, b: 40, t: 20}
-  };
+  <script type="text/javascript">Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
+    var trace = {
+      x: rows.map(function(row){return row['Time']; }),
+      y: rows.map(function(row){return row['10 Min Sampled Avg']; }),
+      line: {
+        width: 1
+      },
+      error_y: {
+        array: rows.map(function(row){return row['10 Min Std Dev']; }),
+        thickness: 0.5,
+        width: 0
+      }
+    };
 
-  Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
-});
-</script>
+    var layout = {
+      yaxis: {title: "Wind Speed"},
+      xaxis: {showgrid: false, tickformat: "%B %e"},
+      margin: {l: 60, b: 37, t: 0, r: 20}
+    };
 
-<h5>High performance</h5>
+    Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
+  });
+  </script>
 
-Most plotly graphs are drawn with SVG in the DOM. This means great compatability across browsers and publication-quality vector image export. Unfortunately, there are inherent performance limitations with the number of SVG elements that you can draw in the DOM.<br>
+  <div class="block-title">High performance</div>
+  <div style="width: 100%" class="block-content">
 
-<code>plotly.js</code><a target="_blank" href=""> uses <a target="_blank" href="http://stack.gl">stack.gl</a></a> for high performance 2D and 3D charting, allowing rich 2D and 3D interactivity into the millions of points, exceeding the inherit performance limitations of SVG in the browser by orders of magnitude.
+    <div style="width: 75%">
+      Most plotly graphs are drawn with SVG. This offers great compatability across browsers and publication-quality vector image export. Unfortunately, there are inherent performance limitations with the number of SVG elements that you can draw in the DOM.<br><br>
+      <code>plotly.js</code><a target="_blank" href=""> uses <a target="_blank" href="http://stack.gl">stack.gl</a></a> for high performance 2D and 3D charting.<br><br>
+    </div>
 
-<img style="width: 100%; max-width: 1000px" src="https://plot.ly/~chris/17389/hue-value-vs-year/.png"/>
+    <div style="position: relative;" class="row">
+      <div style="
+          float: left; width: 75%;
+      ">
+        <a class="image-link" style="display: inline-block;" href="https://plot.ly/~chris/17389.embed"><img style="width: 100%" src="https://plot.ly/~chriddyp/1771/hue-value-vs.png"/></a>
+      </div>
+      <div style="
+        width: 25%;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        left: 75%;
+      ">
+        This chart was drawn with the <code>plotly.js</code> chart type <code>scattergl</code>. <code>scattergl</code> charts render an order of magnitude faster than their SVG counterparts.<br>
+        <a style="margin-top: 30px; display: inline-block;" target="_blank" href="https://plot.ly/~chris/17389.embed">view the interactive version</a>
+      </div>
+    </div>
 
-<h5>Fully interactive</h5>
-<code>plotly.js</code> charts are shipped with zoom, pan, hover, and click interactions. Click-and-drag to zoom into a region, double-click to autoscale, click on legend items to toggle traces. All of these events are also <a target="_blank" href="">exposed in the API</a>.
+    <div style="position: relative; width: 100%" class="row">
+      <div style="
+        margin-top: 30px;
+        width: 25%;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        left: 0%;
+      ">
+      All 3D charts in <code>plotly.js</code> are rendered with webgl, leveraging the power of the GPU for fast interactivity.
+      <a style="margin-top: 30px; display: inline-block;" target="_blank" href="https://plot.ly/~chris/17389.embed">view the interactive version</a>
+      </div>
+      <div style="width: 75%; left: 25%; float: right;">
+        <a class="image-link" style="display: inline-block; width: 100%;" href="https://plot.ly/~chriddyp/1780.embed">
+            <img style="width: 100%;" src="https://plot.ly/~chriddyp/1780.png"/>
+        </a>
+      </div>
+    </div>
+  </div>
 
+  <div class="block-title">Fully interactive</div>
+  <div class="block-content">
+  <code>plotly.js</code> charts are shipped with zoom, pan, hover, and click interactions. Click-and-drag to zoom into a region, double-click to autoscale, click on legend items to toggle traces. All of these events are also <a target="_blank" href="">exposed in the API</a>.
+  </div>
 
-<h5>Universal</h5>
-By abstracting charts to a declaritive JSON structure, <code>plotly.js</code> is used a browser-based charting library in <a target="_blank" href="">Python</a>, <a target="_blank" href="">R</a>, <a target="_blank" href="">MATLAB</a>, <a target="_blank" href="">Julia</a>.
+  <video style="width: 100%;" preload="auto" loop="loop" autoplay>
+    <source src="https://s3.amazonaws.com/plotly-downloads/js-interactive.mp4" type="video/mp4">
+  </video>
 
-<script type="text/javascript">
-window.addEventListener("resize", function(){
-  Plotly.Plots.resize(document.getElementById('wind-speed'), {showLink: false});
-  Plotly.Plots.resize(document.getElementById('contour-plot'), {showLink: false});
-  Plotly.Plots.resize(document.getElementById('my-graph'), {showLink: false});
-});
-</script>
+  <div class="block-title">Universal</div>
+  <div class="block-content">
+  By abstracting charts to a declaritive JSON structure, <code>plotly.js</code> is used a browser-based charting library in <a target="_blank" href="">Python</a>, <a target="_blank" href="">R</a>, <a target="_blank" href="">MATLAB</a>, <a target="_blank" href="">Julia</a>.
+  </div>
 
-<h5>Contributing</h5>
-<code>plotly.js</code> is open source. You can also sponsor development, like these great companies.
+  <script type="text/javascript">
+  window.addEventListener("resize", function(){
+    Plotly.Plots.resize(document.getElementById('wind-speed'), {showLink: false});
+    Plotly.Plots.resize(document.getElementById('contour-plot'), {showLink: false});
+    Plotly.Plots.resize(document.getElementById('my-graph'), {showLink: false});
+  });
+  </script>
 
-<h5>Getting started</h5>
+  </div>
 
-<h5>Example gallery</h5>
+  <div class="block-title">Contributing</div>
+  <code>plotly.js</code> is open source. You can also sponsor development, like these great companies.
 
-<h5>License</h5>
-<h5>MIT</h5>
+  <div class="block-title">Getting started</div>
 
+  <div class="block-title">Example gallery</div>
+
+  <div class="block-title">License</div>
+  <div class="block-title">MIT</div>
+</div>
