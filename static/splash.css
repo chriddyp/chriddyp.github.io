@@ -132,6 +132,16 @@ code {
   margin: 0;
 }
 
+/* Navigation */
+.section-title {
+  text-transform: uppercase;
+}
+
+.item {
+  margin-left: 10px;
+  color: #d3d3d3;
+}
+
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
