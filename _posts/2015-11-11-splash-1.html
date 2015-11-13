@@ -22,25 +22,73 @@ layout: base
   "></div>
 
   <div style="width: 100%; position: absolute; top: 50%; transform: translateY(-50%); text-align: center; color: white; font-weight: 300; letter-spacing: 0;">
-    <h2>plotly.js</h2>
-    <h4 style="letter-spacing: 0.3px; font-weight: 100;">The open source javascript graphing library that powers plotly</h4>
+    <div class="js-splash--banner-title" style="font-size: 4.2rem; margin-top: 0; margin-bottom: 2rem; font-weight: 300; ">plotly.js</div>
+    <div class="js-splash--banner-subtitle" style="font-size: 2.2rem; letter-spacing: 0.3px; font-weight: 100;   margin-top: 0; margin-bottom: 2rem; font-weight: 300;">The open source javascript graphing library that powers plotly</div>
   </div>
 </div>
 
 <div style="position: relative;">
-<div id="sidebar" style="float: left; width: 230px; position: fixed; overflow-y: scroll; height: 100%;">
+<div id="sidebar" class="js-splash--navigation-sidebar">
   {% include navigation.html %}
 </div>
 
-<div style="width: calc(100% - 560px); margin-left: 280px; margin-right: 280px;">
+<div class="js-splash--container">
 
-<div style="font-size: 2rem; text-transform: uppercase; margin-bottom: 10px; padding-top: 50px; font-weight: 400;">philosophy</div>
+<div class="block-title">what is plotly.js?</div>
 
-  <div style="font-weight: 300; font-size: 1.6rem; line-height: 2.6rem;">
-  Built on top of d3.js and <a target="_blank" href="http://stack.gl">stack.gl</a>, <code>plotly.js</code> provides a high-level, declarative charting interface. <code>plotly.js</code> ships with 17 chart types, including 3D charts, statistical graphs, and high-level maps. Over 3 years, <code>plotly.js</code> has generated over 300 million graphs in the plotly community.
-  </div>
+<div style="width: 90%; margin-bottom: 30px;" class="block-content">
+  Built on top of d3.js and <a target="_blank" href="http://stack.gl">stack.gl</a>, plotly.js is a high-level, declarative charting library. plotly.js ships with 17 chart types, including 3D charts, statistical graphs, and SVG maps.
 
-  <div class="graph" style="height: 80vh;" id="my-graph"></div>
+  <br>You can view the source on <a target="_blank" href="https://github.com/plotly/plotly.js">GitHub</a>.
+</div>
+
+  <!-- menu for small screens - is shown through a media query at some screenwidth -->
+
+  <div class="js-splash--navigation-inline row" style="width: 100%" class="row">
+    <div style="width: 33%; float: left;">
+      <div class="section-title">Quick Start</div>
+      <div class="item-container">
+        <div class="item">Getting Started</div>
+        <div class="item">CDN</div>
+      </div>
+
+      <div class="section-title">Reference</div>
+      <div class="item-container">
+        <div class="item">Plot Schema</div>
+        <div class="item">Function Reference</div>
+      </div>
+    </div>
+
+    <div style="width: 33%; float: left;">
+      <div class="section-title">Examples</div>
+      <div class="item-container">
+        <div class="item">2D</div>
+        <div class="item">Maps</div>
+        <div class="item">3D</div>
+        <div class="item">Webgl</div>
+        <div class="item">Events</div>
+        <div class="item">Layout</div>
+      </div>
+    </div>
+
+    <div style="width: 33%; float: left;">
+      <div class="section-title">Community</div>
+      <div class="item-container">
+        <div class="item">Contributing</div>
+        <div class="item">Documentation</div>
+      <div class="item">GitHub</div>
+      </div>
+
+      <div class="section-title">Tools</div>
+      <div class="item-container">
+        <div class="item">Web Editor</div>
+        <div class="item">Codepen Sandbox</div></div>
+      </div>
+    </div>
+
+  <div class="js-splash--responsive-chart-js" class="graph" style="height: 80vh;" id="my-graph"></div>
+  <img class="js-splash--responsive-chart-image" src="https://plot.ly/~chris/17398.png">
+
 
   <pre><code>Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows){
       var YEAR = 2007;
@@ -107,7 +155,7 @@ layout: base
           margin: {t: 20},
           hovermode: 'closest'
       };
-      Plotly.plot('my-graph', data, layout, {showLink: false});
+      Plotly.plot('my-graph', data, layout, {showLink: true});
   });</script>
 
 
@@ -126,7 +174,7 @@ layout: base
     <div>features</div>
   </div>
 
-  <div style="margin-left: 20px;">
+  <div class="js-splash--feature-block">
 
     <div class="block-title">
       Sophisticated chart types
@@ -272,45 +320,29 @@ layout: base
   <div class="block-title">High performance</div>
   <div style="width: 100%" class="block-content">
 
-    <div style="width: 75%">
+    <div class="js-splash--inline-text-header">
       Most plotly graphs are drawn with SVG. This offers great compatability across browsers and publication-quality vector image export. Unfortunately, there are inherent performance limitations with the number of SVG elements that you can draw in the DOM.<br><br>
       <code>plotly.js</code><a target="_blank" href=""> uses <a target="_blank" href="http://stack.gl">stack.gl</a></a> for high performance 2D and 3D charting.<br><br>
     </div>
 
     <div style="position: relative;" class="row">
-      <div style="
-          float: left; width: 75%;
-      ">
+      <div class="js-splash--inline-image-left">
         <a class="image-link" style="display: inline-block;" href="https://plot.ly/~chris/17389.embed"><img style="width: 100%" src="https://plot.ly/~chriddyp/1771/hue-value-vs.png"/></a>
       </div>
-      <div style="
-        width: 25%;
-        top: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        left: 75%;
-      ">
+      <div class="js-splash--inline-text-right">
         This chart was drawn with the <code>plotly.js</code> chart type <code>scattergl</code>. <code>scattergl</code> charts render an order of magnitude faster than their SVG counterparts.<br>
-        <a style="margin-top: 30px; display: inline-block;" target="_blank" href="https://plot.ly/~chris/17389.embed">view the interactive version</a>
       </div>
     </div>
 
     <div style="position: relative; width: 100%" class="row">
-      <div style="
-        margin-top: 30px;
-        width: 25%;
-        top: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        left: 0%;
-      ">
-      All 3D charts in <code>plotly.js</code> are rendered with webgl, leveraging the power of the GPU for fast interactivity.
-      <a style="margin-top: 30px; display: inline-block;" target="_blank" href="https://plot.ly/~chris/17389.embed">view the interactive version</a>
-      </div>
-      <div style="width: 75%; left: 25%; float: right;">
+      <div class="js-splash--inline-image-right">
         <a class="image-link" style="display: inline-block; width: 100%;" href="https://plot.ly/~chriddyp/1780.embed">
             <img style="width: 100%;" src="https://plot.ly/~chriddyp/1780.png"/>
         </a>
+      </div>
+      <div class="js-splash--inline-text-left">
+        All 3D charts in <code>plotly.js</code> are rendered with webgl, leveraging the power of the GPU for fast interactivity.
+        <a class="js-splash--chart-link" target="_blank" href="https://plot.ly/~chris/17389.embed">view the interactive version</a>
       </div>
     </div>
   </div>

@@ -34,7 +34,9 @@ $(function() {
         $header    = $("#header");
 
     $window.scroll(function() {
-    	$sidebar.css({top: Math.max(0, ($header.height() - $window.scrollTop()))});
+    	$sidebar.css({top: Math.max(50,
+                (($header.height() + 50) - // 50: margin-top of the first header
+                $window.scrollTop()))});
     });
 
 });
