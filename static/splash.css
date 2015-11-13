@@ -196,7 +196,7 @@ there.
 }
 
 .js-splash--navigation-inline {
-  display: none;
+  display: none !important;
 }
 
 .js-splash--inline-text-header {
