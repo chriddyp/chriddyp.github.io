@@ -3,17 +3,23 @@ permalink: /splash-1
 layout: base
 ---
 
+
 <div id="header" style="
   background-image: url('https://raw.githubusercontent.com/plotly/documentation/gh-pages/all_static/images/unemployment.png');
   background-repeat: no-repeat;
   background-size: cover;
   max-width: 100%;
   background-position: center top;
-  background-image: linear-gradient(0deg, #807A36  0%, #3A7CBB  100%);
   width: 100%;
-  height: 40vh;
+  height: 350px;
   position: relative;
   ">
+
+  <div style="
+    background-image: linear-gradient(0deg, rgba(128,122,54, 0.8)  0%, rgba(58,124,187, 0.7) 100%);
+    width: 100%;
+    height: 100%;
+  "></div>
 
   <div style="width: 100%; position: absolute; top: 50%; transform: translateY(-50%); text-align: center; color: white; font-weight: 300; letter-spacing: 0;">
     <h2>plotly.js</h2>
@@ -22,11 +28,11 @@ layout: base
 </div>
 
 <div style="position: relative;">
-<div id="sidebar" style="float: left; width: 200px; position: fixed; overflow-y: scroll; height: 100%;">
+<div id="sidebar" style="float: left; width: 230px; position: fixed; overflow-y: scroll; height: 100%;">
   {% include navigation.html %}
 </div>
 
-<div style="width: calc(100% - 400px); margin-left: 200px; margin-right: 200px;">
+<div style="width: calc(100% - 560px); margin-left: 280px; margin-right: 280px;">
 
 <div style="font-size: 2rem; text-transform: uppercase; margin-bottom: 10px; padding-top: 50px; font-weight: 400;">philosophy</div>
 
@@ -314,9 +320,11 @@ layout: base
   <code>plotly.js</code> charts are shipped with zoom, pan, hover, and click interactions. Click-and-drag to zoom into a region, double-click to autoscale, click on legend items to toggle traces. All of these events are also <a target="_blank" href="">exposed in the API</a>.
   </div>
 
-  <video style="width: 100%;" preload="auto" loop="loop" autoplay>
-    <source src="https://s3.amazonaws.com/plotly-downloads/js-interactive.mp4" type="video/mp4">
-  </video>
+  <div style="border: 1px solid #C2C2C2;">
+    <video style="width: 100%;" preload="auto" loop="loop" autoplay>
+      <source src="https://s3.amazonaws.com/plotly-downloads/js-interactive.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <div class="block-title">Universal</div>
   <div class="block-content">
@@ -332,14 +340,4 @@ layout: base
   </script>
 
   </div>
-
-  <div class="block-title">Contributing</div>
-  <code>plotly.js</code> is open source. You can also sponsor development, like these great companies.
-
-  <div class="block-title">Getting started</div>
-
-  <div class="block-title">Example gallery</div>
-
-  <div class="block-title">License</div>
-  <div class="block-title">MIT</div>
 </div>
