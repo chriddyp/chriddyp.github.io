@@ -3,12 +3,21 @@
   <head>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
      <meta charset="utf-8" />
+     <script>
+        const conf = { headers: { 'Content-Type': 'application/json' }};
+        fetch('https://mtroyal-ski.now.sh', conf).then(res => res.json()).then(data => {
+          const conditionsElem = document.getElementById('conditions');
+          conditionsElem.innerHTML = `Mise au jour: ${data.updated}\n Conditions: ${data.conditions}\n Commentaires: ${data.conditionComments}\n Precipitation: ${data.typeOfSnow}\n CM: ${data.precipitationCM}\n Commentaires: ${data.snowComments}\n`;
+        }).catch(err => {
+          console.error(err);
+        });
+     </script>
   </head>
   <body style="font-family: sans-serif; font-weight: normal; color: rgb(138, 138, 138)">
     <div style="margin-left: auto; margin-right: auto; width: 40%; text-align: center;">
     <img src="/static/sunset-logo.png" style="width: 300px; margin-top: 100px;"/>
 
-    <h2 style="margin-top: 100px;">
+    <h2 style="margin-top: 80px;">
        Wax up yer skis and get ready for 2018-2019 nordic ski soirées
    </h2>
 
@@ -17,6 +26,9 @@
     </h4>
 
     <i>a chriddyp and vero project ❤</i>
+
+    <hr style="margin-top:20px;margin-bottom:20px"/>
+    <div id="conditions" style="white-space:pre;"/>
 
   </body>
 </html>
