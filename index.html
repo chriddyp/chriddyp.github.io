@@ -4,14 +4,8 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
      <meta charset="utf-8" />
      <script>
-        const conf = {
-          headers: { 'Content-Type': 'application/json' }
-        };
-
-        fetch('https://mtroyal-ski.now.sh', conf).then((res) => {
-          return res.json();
-        }).then((data) => {
-
+        const conf = { headers: { 'Content-Type': 'application/json' }};
+        fetch('https://mtroyal-ski.now.sh', conf).then(res => res.json()).then(data => {
           const conditionsElem = document.getElementById('conditions');
           conditionsElem.innerHTML = `Mise au jour: ${data.updated}\n Conditions: ${data.conditions}\n Commentaires: ${data.conditionComments}\n Precipitation: ${data.typeOfSnow}\n CM: ${data.precipitationCM}\n Commentaires: ${data.snowComments}\n`;
         }).catch(err => {
