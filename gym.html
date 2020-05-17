@@ -122,10 +122,10 @@
           }
 
           if (rest === true) {
-            activity.innerText = 'REST: ' + seconds % 7;
+            activity.innerText = 'REST: ' + ((seconds - (exerciseNumber * 32) - 25) + 1);
           } else {
             activity.innerText = (
-              seconds % 25 +
+              (seconds - (exerciseNumber * 32)) + 1 +
               '\n' +
               exerciseName[exerciseNumber] +
               '\n' +
