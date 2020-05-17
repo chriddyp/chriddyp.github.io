@@ -1,0 +1,111 @@
+<html>
+    <style>
+
+    html, body {
+      background-color: #FFDC00;
+      margin: 0;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: monospace;
+      margin: 0;
+    }
+    .parent {
+      position: relative;
+      height: 100vh;
+    }
+    .color-purple {
+      color: rebeccapurple;
+    }
+    .color-white {
+      color: white;
+    }
+    .centered-child {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .header-center {
+      text-align: center;
+    }
+    </style>
+
+    <body>
+        <div class="parent" id="parent">
+          <h3 class="color-purple header-center">~*cHrIs & vERoNiCa'S gYm WebSite*~</h3>
+
+          <h1 id="activity" class="color-purple centered-child">Get ready!</h1>
+
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        console.log('Hello world');
+        var activity = document.getElementById('activity');
+
+        var parent = document.getElementById('parent');
+
+        var exerciseName = [
+         "downdog",
+         "pushup",
+         "handstand",
+         "front splits",
+         "super squat",
+         "ninja kick",
+         "barrel roll",
+         "ALL DONE!"
+        ];
+
+        var exerciseNumber=0;
+
+        var background = [
+          "pink",
+          "red",
+          "orange",
+          "green",
+          "black",
+          "olive",
+          "maroon",
+        ];
+
+        var backgroundNumber=0;
+        var seconds = 0;
+        var rest = false;
+
+        var myInterval = window.setInterval(updateText, 1000);
+
+        function updateText() {
+          seconds = seconds + 1;
+          if (exerciseNumber === exerciseName.length - 1) {
+            window.clearInterval(myInterval);
+          }
+
+          exerciseNumber = Math.floor(seconds / 32);
+
+          console.log(seconds);
+          console.log(exerciseNumber);
+
+          if ((seconds - (exerciseNumber * 32)) < 25) {
+            rest = false;
+          } else {
+            rest = true;
+          }
+
+          if (rest === true) {
+            activity.innerText = 'REST';
+          } else {
+            activity.innerText = (
+              (exerciseNumber + 1) +
+              ': ' +
+              exerciseName[exerciseNumber]
+            );
+          }
+
+          parent.style.backgroundColor = "#39CCCC";
+          parent.style.backgroundColor = background[backgroundNumber];
+        }
+
+    </script>
+
+</html>
