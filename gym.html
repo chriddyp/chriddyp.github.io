@@ -117,15 +117,19 @@
           var REST_TIME = 7;
 
           exerciseNumber = Math.floor(seconds / (WORKOUT_TIME + REST_TIME));
-
-          if ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) < REST_TIME) {
+          console.log(exerciseNumber);
+          console.log((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))));
+          if ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) < WORKOUT_TIME) {
             rest = false;
           } else {
             rest = true;
           }
 
           if (rest === true) {
-            activity.innerText = 'REST: ' + ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME)) - WORKOUT_TIME) + 1);
+            activity.innerText = (
+                'REST: ' +
+                ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME)) - WORKOUT_TIME) + 1)
+            );
           } else {
             activity.innerText = (
               (seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) + 1 +
