@@ -1,39 +1,40 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
     <style>
 
-html, body {
-background-color: #FFDC00;
-margin: 0;
-}
-h1, h2, h3, h4, h5, h6 {
-font-family: monospace;
-margin: 0;
-}
-.parent {
-position: relative;
-height: 100vh;
-text-wrap: pre;
-text-align: center;
-}
-.color-purple {
-color: rebeccapurple;
-}
-.color-white {
-color: white;
-}
-.centered-child {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-}
+    html, body {
+        background-color: #FFDC00;
+        margin: 0;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: monospace;
+        margin: 0;
+    }
+    .parent {
+        position: relative;
+        height: 100vh;
+        text-wrap: pre;
+        text-align: center;
+    }
+    .color-purple {
+        color: rebeccapurple;
+    }
+    .color-white {
+        color: white;
+    }
+    .centered-child {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-.header-center {
-text-align: center;
-}
+    .header-center {
+        text-align: center;
+    }
     </style>
 
     <body>
@@ -46,9 +47,7 @@ text-align: center;
     </body>
 
     <script type="text/javascript">
-        console.log('Hello world');
         var activity = document.getElementById('activity');
-
         var parent = document.getElementById('parent');
 
         var exerciseName = [
@@ -111,9 +110,6 @@ text-align: center;
           }
 
           exerciseNumber = Math.floor(seconds / 32);
-
-          console.log(seconds);
-          console.log(exerciseNumber);
 
           if ((seconds - (exerciseNumber * 32)) < 25) {
             rest = false;
