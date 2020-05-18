@@ -53,29 +53,31 @@
         var exerciseName = [
             'DNS lateral bridge',
             'Push Up to Downdog',
-            'SL RDL w/reach + back lunge',
+            'SL RDL w/reach + back lunge (Left)',
 
             'DNS lateral bridge',
             'Push Up to Downdog',
-            'SL RDL w/reach + back lunge',
+            'SL RDL w/reach + back lunge (Right)',
 
             'Bent over Y',
             'Bent over T',
             'Standing reverse press',
             'Standing rotational press',
-            'Split stance bent over row',
+            'Split stance bent over row (Left)',
+            'Split stance bent over row (Right)',
             'Push up',
             'Laternal bridge walk',
-            'Between char straight arm dips',
+            'Between chair straight arm dips',
 
             'Bent over Y',
             'Bent over T',
             'Standing reverse press',
             'Standing rotational press',
-            'Split stance bent over row',
+            'Split stance bent over row (Left)',
+            'Split stance bent over row (Right)',
             'Push up',
             'Laternal bridge walk',
-            'Between chair straight arm dips'
+            'Between chair straight arm dips',
 
         ];
 
@@ -108,20 +110,23 @@
           if (exerciseNumber === exerciseName.length - 1) {
             window.clearInterval(myInterval);
           }
+          var IDLE_TIME = 5;
+          var WORKOUT_TIME = 25 + IDLE_TIME;
+          var REST_TIME = 7;
 
-          exerciseNumber = Math.floor(seconds / 32);
+          exerciseNumber = Math.floor(seconds / (WORKOUT_TIME + REST_TIME));
 
-          if ((seconds - (exerciseNumber * 32)) < 25) {
+          if ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) < REST_TIME) {
             rest = false;
           } else {
             rest = true;
           }
 
           if (rest === true) {
-            activity.innerText = 'REST: ' + ((seconds - (exerciseNumber * 32) - 25) + 1);
+            activity.innerText = 'REST: ' + ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME)) - WORKOUT_TIME) + 1);
           } else {
             activity.innerText = (
-              (seconds - (exerciseNumber * 32)) + 1 +
+              (seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) + 1 +
               '\n' +
               exerciseName[exerciseNumber] +
               '\n' +
