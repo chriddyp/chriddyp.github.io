@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <style>
+
+    html, body {
+        background-color: #FFDC00;
+        margin: 0;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: monospace;
+        margin: 0;
+    }
+    .parent {
+        position: relative;
+        height: 100vh;
+        text-wrap: pre;
+        text-align: center;
+    }
+    .color-purple {
+        color: rebeccapurple;
+    }
+    .color-white {
+        color: white;
+    }
+    .centered-child {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .header-center {
+        text-align: center;
+    }
+    </style>
+
+    <body>
+        <div class="parent" id="parent">
+          <h3 class="color-purple header-center">~*cHrIs & vERoNiCa'S gYm WebSite*~</h3>
+
+          <h1 id="activity" class="color-purple centered-child">Get ready!</h1>
+
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        var activity = document.getElementById('activity');
+        var parent = document.getElementById('parent');
+
+        var exerciseName = [
+            'DNS lateral bridge (Left)',
+            'DNS lateral bridge (Right)',
+            'Push Up to Downdog',
+            'SL RDL w/reach + back lunge (Left)',
+
+            'DNS lateral bridge (Left)',
+            'DNS lateral bridge (Right)',
+            'Push Up to Downdog',
+            'SL RDL w/reach + back lunge (Right)',
+
+            'SL squat to chair',
+            'Chair step up',
+            'Split squat',
+            'Squat',
+            'Wall squat',
+            'Hip extension heels on chair'
+        ];
+
+        var exerciseNumber=0;
+
+        var background = [
+            '#001f3f',
+            '#0074D9',
+            '#7FDBFF',
+            '#39CCCC',
+            '#3D9970',
+            '#2ECC40',
+            '#01FF70',
+            '#FFDC00',
+            '#FF851B',
+            '#FF4136',
+            '#85144b',
+            '#F012BE',
+            '#B10DC9',
+        ];
+
+        var backgroundNumber=0;
+        var seconds = 0;
+        var rest = false;
+
+        var myInterval = window.setInterval(updateText, 1000);
+
+        function updateText() {
+          seconds = seconds + 1;
+          if (exerciseNumber === exerciseName.length - 1) {
+            window.clearInterval(myInterval);
+          }
+          var IDLE_TIME = 10;
+          var WORKOUT_TIME = 35 + IDLE_TIME;
+          var REST_TIME = 7;
+
+          exerciseNumber = Math.floor(seconds / (WORKOUT_TIME + REST_TIME));
+
+          if ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) < WORKOUT_TIME) {
+            rest = false;
+          } else {
+            rest = true;
+          }
+
+          if (rest === true) {
+            activity.innerText = (
+                'REST: ' +
+                ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME)) - WORKOUT_TIME) + 1)
+            );
+            parent.style.backgroundColor = '#7FDBFF';
+          } else {
+            activity.innerText = (
+              (seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) + 1 +
+              ' / ' + WORKOUT_TIME +
+              '\n' +
+              exerciseName[exerciseNumber] +
+              '\n' +
+              (exerciseNumber + 1) +
+              ' / ' +
+              exerciseName.length
+            );
+            parent.style.backgroundColor = '#001f3f';
+          }
+
+
+        }
+
+    </script>
+
+</html>

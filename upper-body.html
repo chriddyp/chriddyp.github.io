@@ -117,8 +117,7 @@
           var REST_TIME = 7;
 
           exerciseNumber = Math.floor(seconds / (WORKOUT_TIME + REST_TIME));
-          console.log(exerciseNumber);
-          console.log((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))));
+
           if ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) < WORKOUT_TIME) {
             rest = false;
           } else {
@@ -130,10 +129,11 @@
                 'REST: ' +
                 ((seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME)) - WORKOUT_TIME) + 1)
             );
+            parent.style.backgroundColor = '#7FDBFF';
           } else {
             activity.innerText = (
               (seconds - (exerciseNumber * (WORKOUT_TIME + REST_TIME))) + 1 +
-              ' / ' + WORKOUT_TIME + 
+              ' / ' + WORKOUT_TIME +
               '\n' +
               exerciseName[exerciseNumber] +
               '\n' +
@@ -141,10 +141,10 @@
               ' / ' +
               exerciseName.length
             );
+            parent.style.backgroundColor = '#001f3f';
           }
 
-          parent.style.backgroundColor = "#39CCCC";
-          parent.style.backgroundColor = background[backgroundNumber];
+
         }
 
     </script>
